@@ -22,19 +22,19 @@ METHOD: GET
 
 Returned Data Format List
 
-|       Field Name         |   Type   |      Note     |     |
-| ------------------------ | -------- | -------------- | --- |
-| trading_pairs            | string   | Spot Trading Pair ID  |     |
-| base_currency            | string   | Base Token      |     |
-| quote_currency           | Best Ask Price | 计价token      |     |
-| last_price               | decimal  | Latest Price      |     |
-| lowest_ask               | decimal  | Best Ask Price      |     |
-| highest_bid              | decimal  | Best Bid Price       |     |
-| base_volume              | decimal  | Trading Volume        |     |
-| quote_volume             | decimal  | Trading Amount        |     |
-| price_change_percent_24h | double   | 24-hour Price Change  |     |
-| highest_price_24h        | decimal  | 24-hour High Price |     |
-| lowest_price_24h         | decimal  | 24-hour Low Price |     |
+|        Field Name        |      Type      |         Note         |
+| ------------------------ | -------------- | -------------------- |
+| trading_pairs            | string         | Spot Trading Pair ID |
+| base_currency            | string         | Base Token           |
+| quote_currency           | Best Ask Price | 计价token            |
+| last_price               | decimal        | Latest Price         |
+| lowest_ask               | decimal        | Best Ask Price       |
+| highest_bid              | decimal        | Best Bid Price       |
+| base_volume              | decimal        | Trading Volume       |
+| quote_volume             | decimal        | Trading Amount       |
+| price_change_percent_24h | double         | 24-hour Price Change |
+| highest_price_24h        | decimal        | 24-hour High Price   |
+| lowest_price_24h         | decimal        | 24-hour Low Price    |
 
 
 ```
@@ -45,11 +45,11 @@ METHOD: GET
 
 Returned Data Format List<Map<String,Data>>, Map Key for Spot Trading Pair, such as BTC_USDT
 
-|   Field Name |  Type   |   Note   |     |
-| ------------ | ------- | -------- | --- |
-| last_price   | decimal | Latest Price |     |
-| base_volume  | decimal | Trading Volume   |     |
-| quote_volume | decimal | Trading Amount   |     |
+|  Field Name  |  Type   |      Note      |
+| ------------ | ------- | -------------- |
+| last_price   | decimal | Latest Price   |
+| base_volume  | decimal | Trading Volume |
+| quote_volume | decimal | Trading Amount |
 
 ```
 Spot Market Depth Information
@@ -130,26 +130,24 @@ METHOD: GET
 ```
 Returned Data Format List
 
-|         Field Name          |         Note        | 
-| --------------------------- | -------------------- | 
-| ticker_id                   | Contract ID              | 
-| base_currency               | Base Token            | 
-| quote_currency              | Quoted Token           | 
-| last_price                  | Latest price             | 
-| base_volume                 | Trading volume priced in base currency | 
-| quote_volume                | Trading volume priced in quoted currency| 
-| high                        | 24-hour highest price         | 
-| low                         | 24-hour lowest price
-         | 
-| product_type                | --                   | 
-| open_interest               | Open interest value
-          | 
-| open_interest_usd           | Open interest value in USD   | 
-| index_price                 | Index price             | 
-| next_funding_rate_timestamp | Next funding rate settlement time| 
-| funding_rate                | Current funding rate         | 
-| next_funding_rate           | Predicted funding rate      | 
-| contract_type               | --                   | 
-| contract_price              | --                   | 
-| contract_price_currency     | --                   | 
-| usd_volume                  | --                   | 
+|         Field Name          |                   Note                   |
+| --------------------------- | ---------------------------------------- |
+| ticker_id                   | Contract ID                              |
+| base_currency               | Base Token                               |
+| quote_currency              | Quoted Token                             |
+| last_price                  | Latest price                             |
+| base_volume                 | Trading volume priced in base currency   |
+| quote_volume                | Trading volume priced in quoted currency |
+| high                        | 24-hour highest price                    |
+| low                         | 24-hour lowest price                     |
+| product_type                | --                                       |
+| open_interest               | Open interest value                      |
+| open_interest_usd           | Open interest value in USD               |
+| index_price                 | Index price                              |
+| next_funding_rate_timestamp | Next funding rate settlement time        |
+| funding_rate                | Current funding rate                     |
+| next_funding_rate           | Predicted funding rate                   |
+| contract_type               | --                                       |
+| contract_price              | --                                       |
+| contract_price_currency     | --                                       |
+| usd_volume                  | --                                       |
