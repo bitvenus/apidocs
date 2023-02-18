@@ -1,152 +1,154 @@
 # Bitvenus API Documentation
 
-## 接口列表
+## Interface List
 
-|              现货行情接口               | 是否需要登录/验签 |
+|       Spot Market Data Interface      | Is login/authentication required |
 | --------------------------------------- | ----------------- |
 | /openapi/quote/v1/summaryEndpoint       | N                 |
 | /openapi/quote/v1/ticker                | N                 |
 | /openapi/quote/v1/orderbook/market_pair | N                 |
 | /openapi/quote/v1/trades/market_pair    | N                 |
-| 合约行情接口                            |                   |
+| Contract market interface                         |                   |
 | /openapi/quote/v1/contractsDish         | N                 |
 | /openapi/quote/v1/contractsTicker       | N                 |
 
-## 接口明细
+## Interface Details
 
 ```
-现货交易对列表
+Spot Trading Pair List
 PATH:   /openapi/quote/v1/summaryEndpoint
 METHOD: GET
 ```
 
-返回数据格式 List
+Returned Data Format List
 
-|         字段名称         |   类型   |      备注      |     |
+|       Field Name         |   Type   |      Note     |     |
 | ------------------------ | -------- | -------------- | --- |
-| trading_pairs            | string   | 现货交易对id   |     |
-| base_currency            | string   | 基础token      |     |
-| quote_currency           | 卖一价格 | 计价token      |     |
-| last_price               | decimal  | 最新价格       |     |
-| lowest_ask               | decimal  | 卖一价格       |     |
-| highest_bid              | decimal  | 买一价格       |     |
-| base_volume              | decimal  | 交易量         |     |
-| quote_volume             | decimal  | 交易额         |     |
-| price_change_percent_24h | double   | 24小时涨跌幅   |     |
-| highest_price_24h        | decimal  | 24小时最高价格 |     |
-| lowest_price_24h         | decimal  | 24小时最低价格 |     |
+| trading_pairs            | string   | Spot Trading Pair ID  |     |
+| base_currency            | string   | Base Token      |     |
+| quote_currency           | Best Ask Price | 计价token      |     |
+| last_price               | decimal  | Latest Price      |     |
+| lowest_ask               | decimal  | Best Ask Price      |     |
+| highest_bid              | decimal  | Best Bid Price       |     |
+| base_volume              | decimal  | Trading Volume        |     |
+| quote_volume             | decimal  | Trading Amount        |     |
+| price_change_percent_24h | double   | 24-hour Price Change  |     |
+| highest_price_24h        | decimal  | 24-hour High Price |     |
+| lowest_price_24h         | decimal  | 24-hour Low Price |     |
 
 
 ```
-最新成交
+Latest Trade
 PATH:   /openapi/quote/v1/ticker
 METHOD: GET
 ```
 
-返回数据格式 List<Map<String,Data>>, map key 为 现货交易对，例如 BTC_USDT
+Returned Data Format List<Map<String,Data>>, Map Key for Spot Trading Pair, such as BTC_USDT
 
-|   字段名称   |  类型   |   备注   |     |
+|   Field Name |  Type   |   Note   |     |
 | ------------ | ------- | -------- | --- |
-| last_price   | decimal | 最新价格 |     |
-| base_volume  | decimal | 交易量   |     |
-| quote_volume | decimal | 交易额   |     |
+| last_price   | decimal | Latest Price |     |
+| base_volume  | decimal | Trading Volume   |     |
+| quote_volume | decimal | Trading Amount   |     |
 
 ```
-现货 盘口深度信息
+Spot Market Depth Information
 PATH:   /openapi/quote/v1/orderbook/market_pair
 METHOD: GET
 ```
 
-请求参数：
+Request Parameters:
 
-| 字段名称    |类型    | 备注                                          | 示例                 |
+| Field Name  |Type    | Note                                       |Example               |
 | ----------- | ------ | --------------------------------------------- | -------------------- |
-| market_pair | string | 现货交易对                                    | BTC-USDT             |
-| depth       | int    | 最大深度                                      | 0 表示所有深度都返回 |
-| level       | int    | 当且仅单传1时返回一档买卖盘，否则返回全部盘口 | 0,1                  |
+| market_pair | string | Spot Trading Pair                      | BTC-USDT             |
+| depth       | int    | Maximum Depth               | 0 indicates that all depths will be returned |
+| level       | int    | When 1 is passed, only one bid and ask level will be returned. Otherwise, all market depth will be returned. | 0,1                  |
 
-返回该合约的盘口信息
+Return market depth information for this contract.
 
-| 字段名称  |  类型   |   备注    | 
+| Field Name  |  Type   |   Note    | 
 | --------- | ------- | --------- | 
-| ticker_id | string  | 合约id    | 
-| timestamp | long    | 基础token | 
-| bids      | []      | 买盘      | 
-| --   [0]  | decimal | 价格      | 
-| --   [1]  | decimal | 合约张数  | 
-| asks      | []      | 买盘      | 
-| --   [0]  | decimal | 价格      | 
-| --   [1]  | decimal | 合约张数  | 
+| ticker_id | string  | Contract ID   | 
+| timestamp | long    | Base Token | 
+| bids      | []      | Bids      | 
+| --   [0]  | decimal | Price     | 
+| --   [1]  | decimal | Contract Quantity  | 
+| asks      | []      | Bids      | 
+| --   [0]  | decimal | Price      | 
+| --   [1]  | decimal | Contract Quantity   | 
 
 
 ```
-现货 - 返回指定交易最近完成的交易数据
+Spot - Return the latest completed transaction data for a specified trading pair.
 PATH:   /openapi/quote/v1/trades/market_pair
 METHOD: GET
 ```
 
-请求参数：
-|  字段名称   |  类型  |                     备注                      |   示例   |
+Request parameters：
+|  Field Name  |  Type  |                   Note                    |Example|
 | ----------- | ------ | --------------------------------------------- | -------- |
-| market_pair | string | 现货交易对                                    | BTC-USDT |
-| level       | int    | 当且仅单传1时返回一档买卖盘，否则返回全部盘口 | 0,1      |
+| market_pair | string | Spot trading pair                          | BTC-USDT |
+| level       | int    | Return the top bid and ask orders only if the value is 1, otherwise return all the orders for the market.| 0,1      |
 
-返回该最新成交的信息
+Return the latest transaction information.
 
-|   字段名称   |  类型   |       备注       |
+|   Field Name   | Type   |       Note       |
 | ------------ | ------- | ---------------- |
-| trade_id     | long    | 合约id           |
-| price        | decimal | 成交价           |
-| base_volume  | decimal | 成交量           |
-| quote_volume | decimal | 成交额           |
-| timestamp    | long    | 成交时间，时间戳 |
+| trade_id     | long    | Contract ID         |
+| price        | decimal | 	Trade price          |
+| base_volume  | decimal | Trading Volume      |
+| quote_volume | decimal | Trading Amount          |
+| timestamp    | long    | Transaction time, timestamp |
 | type         | string  | Sell, Buy        |
 
 
 ```
-合约交易列表
+Contract transaction list
 PATH:   /openapi/quote/v1/contractsDish
 METHOD: GET
 ```
 
-返回数据格式 List
+Returned Data Format List
 
-|   字段名称    |  类型   |   备注    | 
+|  Field Name   | Type  |   Note   | 
 | ------------- | ------- | --------- | 
-| ticker_id     | string  | 合约id    | 
-| timestamp     | long    | 基础token | 
-| bids          | {}      | 买盘      | 
-| --   price    | decimal | 价格      | 
-| --   quantity | decimal | 合约张数  | 
-| asks          | {}      | 买盘      | 
-| --  price     | decimal | 价格      | 
-| --   quantity | decimal | 合约张数  | 
+| ticker_id     | string  | Contract ID    | 
+| timestamp     | long    | Base Token | 
+| bids          | {}      | Bids      | 
+| --   price    | decimal | Price    | 
+| --   quantity | decimal | Contract volume  | 
+| asks          | {}      | asks     | 
+| --  price     | decimal | Price     | 
+| --   quantity | decimal | Contract volume  | 
 
 
 ```
-合约最近成交
+Latest contract transaction
 PATH:   /openapi/quote/v1/contractsTicker
 METHOD: GET
 ```
-返回数据格式 List
+Returned Data Format List
 
-|          字段名称           |         备注         | 
+|         Field Name          |         Note        | 
 | --------------------------- | -------------------- | 
-| ticker_id                   | 合约id               | 
-| base_currency               | 基础token            | 
-| quote_currency              | 计价token            | 
-| last_price                  | 最新价格             | 
-| base_volume                 | 基础货币计价的成绩量 | 
-| quote_volume                | 计价货币计价的成交额 | 
-| high                        | 24小时最高价         | 
-| low                         | 24小时最低价         | 
+| ticker_id                   | Contract ID              | 
+| base_currency               | Base Token            | 
+| quote_currency              | Quoted Token           | 
+| last_price                  | Latest price             | 
+| base_volume                 | Trading volume priced in base currency | 
+| quote_volume                | Trading volume priced in quoted currency| 
+| high                        | 24-hour highest price         | 
+| low                         | 24-hour lowest price
+         | 
 | product_type                | --                   | 
-| open_interest               | 开仓价值             | 
-| open_interest_usd           | 开仓价值 usd 额度    | 
-| index_price                 | 指数价格             | 
-| next_funding_rate_timestamp | 下一次资金费收取时间 | 
-| funding_rate                | 当前资金费率         | 
-| next_funding_rate           | 预测资金费率         | 
+| open_interest               | Open interest value
+          | 
+| open_interest_usd           | Open interest value in USD   | 
+| index_price                 | Index price             | 
+| next_funding_rate_timestamp | Next funding rate settlement time| 
+| funding_rate                | Current funding rate         | 
+| next_funding_rate           | Predicted funding rate      | 
 | contract_type               | --                   | 
 | contract_price              | --                   | 
 | contract_price_currency     | --                   | 
