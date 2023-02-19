@@ -1,13 +1,12 @@
-# Api Endpoints for BitVenus Broker
+# Bitvenus API Documentation
+
+## Api Endpoints for BitVenus Broker
 
 Name | base endpoint
 ------------ | ------------
 rest-api | **[https://www.bitvenus.me/api/](https://www.bitvenus.me/api/)**
 web-socket-streams | **[wss://wsapi.bitvenus.me](wss://wsapi.bitvenus.me)**
 user-data-stream | **[wss://wsapi.bitvenus.me](wss://wsapi.bitvenus.me)**
-
-
-# Bitvenus API Documentation
 
 ## Interface List
 
